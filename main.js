@@ -1,23 +1,16 @@
 var vm = new Vue({
-  el: '#example',
+  el: '#demo',
   data: {
-    message: 'Hello'
+    firstName: 'Foo',
+    lastName: 'Bar',
+    fullName: 'Foo Bar'
   },
-  // computed: {
-  //   // 算出 getter 関数
-  //   reversedMessage: function () {
-  //     // `this` は vm インスタンスを指します
-  //     return this.message.split('').reverse().join('')
-  //   }
-  // },
-  methods: {
-  reverseMessage: function () {
-    return this.message.split('').reverse().join('')
+  watch: {
+    firstName: function (val) {
+      this.fullName = val + ' ' + this.lastName
+    },
+    lastName: function (val) {
+      this.fullName = this.firstName + ' ' + val
+    }
   }
-}
 })
-
-// console.log(vm.reversedMessage) 
-// vm.message = 'Tahara'
-// console.log(vm.reversedMessage) 
-console.log(vm.message)
